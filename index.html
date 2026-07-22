@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desi Agri - Smart Farming Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <section id="login-page" class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <i class="fas fa-leaf"></i>
+                <h1>Desi Agri</h1>
+                <p>Smart Farming Platform</p>
+            </div>
+            
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="farmer-name">Farmer Name</label>
+                    <input type="text" id="farmer-name" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="farmer-phone">Phone Number</label>
+                    <input
+    type="tel"
+    id="farmer-phone"
+    placeholder="Enter 10-digit mobile number"
+    maxlength="10"
+    pattern="[0-9]{10}"
+    inputmode="numeric"
+    oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)"
+    required
+>
+                </div>
+                
+                <div class="form-group">
+                    <label for="farmer-region">Select Your Region</label>
+                    <select id="farmer-region" required>
+                        <option value="">Choose Region</option>
+                        <option value="north">North India</option>
+                        <option value="south">South India</option>
+                        <option value="east">East India</option>
+                        <option value="west">West India</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+            
+            <p class="login-footer">Empowering farmers with technology</p>
+        </div>
+    </section>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" class="dashboard hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <h1>Desi Agri</h1>
+                </div>
+                <div class="farmer-info">
+                    <span id="farmer-greeting">Welcome, Farmer!</span>
+                    <button id="logout-btn" class="btn-logout">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="nav-btn active" data-tab="dashboard-tab">Dashboard</button>
+            <button class="nav-btn" data-tab="weather-tab">Weather</button>
+            <button class="nav-btn" data-tab="advisory-tab">Crop Advisory</button>
+            <button class="nav-btn" data-tab="schemes-tab">Schemes</button>
+            <button class="nav-btn" data-tab="chatbot-tab">AI Assistant</button>
+        </nav>
+
+        <!-- Dashboard Tab -->
+        <section id="dashboard-tab" class="tab-content active">
+            <div class="dashboard-grid">
+                <div class="card welcome-card">
+                    <h2>Welcome to Desi Agri</h2>
+                    <p>Your smart companion for modern farming</p>
+                    <p class="card-text">Access real-time weather updates, crop recommendations, government schemes, and AI-powered farming assistance.</p>
+                </div>
+
+                <div class="card quick-stats">
+                    <h3>Quick Stats</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <i class="fas fa-cloud-sun"></i>
+                            <span>Weather Updates</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-leaf"></i>
+                            <span>Crop Tips</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-scroll"></i>
+                            <span>Schemes</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-robot"></i>
+                            <span>AI Help</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card alerts-card">
+                    <h3>Important Alerts</h3>
+                    <div class="alert-item">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Heavy rainfall expected</strong>
+                            <p>Prepare irrigation systems</p>
+                        </div>
+                    </div>
+                    <div class="alert-item">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>New scheme launched</strong>
+                            <p>Check PM-KISAN updates</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weather Tab -->
+        <section id="weather-tab" class="tab-content">
+            <div class="weather-container">
+                <div class="card weather-current">
+                    <h3>Current Weather</h3>
+                    <div id="current-weather" class="weather-display">
+                        <div class="weather-icon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <div class="weather-info">
+                            <p class="temperature">28°C</p>
+                            <p class="condition">Partly Cloudy</p>
+                            <p class="details">Humidity: 65% | Wind: 12 km/h</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card weather-forecast">
+                    <h3>7-Day Forecast</h3>
+                    <div class="forecast-grid" id="forecast-grid">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="card weather-advisory">
+                    <h3>Weather Advisory</h3>
+                    <div class="advisory-content">
+                        <div class="advisory-item">
+                            <h4>Irrigation Recommendation</h4>
+                            <p>Moderate watering recommended. Next rain expected in 3 days.</p>
+                        </div>
+                        <div class="advisory-item">
+                            <h4>Pest Alert</h4>
+                            <p>Optimal conditions for leaf spot disease. Monitor crops closely.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Crop Advisory Tab -->
+        <section id="advisory-tab" class="tab-content">
+            <div class="advisory-container">
+                <div class="card advisory-selector">
+                    <h3>Select Your Crop</h3>
+                    <div class="crop-buttons" id="crop-selector">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="card advisory-details" id="advisory-details">
+                    <p>Select a crop to view recommendations</p>
+                </div>
+
+                <div class="card best-practices">
+                    <h3>Best Practices</h3>
+                    <ul class="practices-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Rotate crops every season to maintain soil health</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Use organic compost to increase yield</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Monitor soil moisture regularly</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Practice integrated pest management</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Keep detailed farming records</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Government Schemes Tab -->
+        <section id="schemes-tab" class="tab-content">
+            <div class="schemes-container">
+                <div class="schemes-grid" id="schemes-grid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Chatbot Tab -->
+        <section id="chatbot-tab" class="tab-content">
+            <div class="chatbot-container">
+                <div class="chatbot-box">
+                    <div class="chatbot-header">
+                        <i class="fas fa-robot"></i>
+                        <h3>Desi Agri AI Assistant</h3>
+                    </div>
+
+                    <div class="chatbot-messages" id="chat-messages">
+                        <div class="message bot-message">
+                            <p>Hello! I'm your AI farming assistant. Ask me anything about crops, weather, soil, or farming techniques.</p>
+                        </div>
+                    </div>
+
+                    <div class="chatbot-input-area">
+                        <div class="quick-questions">
+                            <button class="quick-btn" data-question="How to increase crop yield?">Increase Yield</button>
+                            <button class="quick-btn" data-question="What about pest control?">Pest Control</button>
+                            <button class="quick-btn" data-question="Soil preparation tips">Soil Prep</button>
+                            <button class="quick-btn" data-question="Water management">Water Management</button>
+                        </div>
+
+                        <form id="chat-form" class="chat-input-form">
+                            <input 
+                                type="text" 
+                                id="chat-input" 
+                                placeholder="Ask me about farming..." 
+                                autocomplete="off"
+                            >
+                            <button type="submit" class="btn-send">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
